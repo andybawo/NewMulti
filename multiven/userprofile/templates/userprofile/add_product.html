@@ -1,0 +1,16 @@
+{% extends 'front/base.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl mb-6">Add Products</h1>
+
+
+    <!-- enctype enables us to upload files -->
+    <form action="." method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <button class="py-4 px-8 bg-cyan-900 text-white hover:bg-gray-400">Add</button>
+    </form>
+{% endblock %}
