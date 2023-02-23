@@ -1,0 +1,59 @@
+{% extends 'front/base.html' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl mb-6">Cart</h1> 
+
+
+        <h2 class="text-xl text-gray-500">Total Cost: NGN{{ cart.get_total_cost}}</h2>
+
+
+
+        <form method="POST" action=".">
+          {% csrf_token %}
+  
+          {{ form.as_p }}
+          <button class="inline-block mt-3 px-8 py-4 bg-cyan-600 text-white" type="button" onclick="makePayment()">PAY</button>
+          <!-- <button class="inline-block mt-3 px-8 py-4 bg-cyan-600 text-white">PAY</button> -->
+          
+  
+      </form>
+
+        <!-- <button class="inline-block mt-3 px-8 py-4 bg-cyan-600 text-white" type="button" onclick="makePayment()">CHECKOUT</button> -->
+        
+
+
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+
+    <script>
+      let cart_total = "{{ cart.get_total_cost}}" 
+      let cart_id = "{{cart.id}}"
+
+
+    function makePayment() {
+  FlutterwaveCheckout({
+    public_key: "FLWPUBK_TEST-4fd674a5860754826095020b0d39f5fa-X",
+    tx_ref: "andystore-48981487343MDI0NzMx",
+    amount: cart_total,
+    currency: "NGN",
+    payment_options: "card, mobilemoneyghana, ussd",
+    redirect_url: "http://127.0.0.1:8000/checkup/"+cart_id,
+    meta: {
+      consumer_id: 23,
+      consumer_mac: "92a3-912ba-1192a",
+    },
+    customer: {
+      email: "{{request.user.email}}",
+      phone_number: "07048923268",
+      name: "{{request.user.username}}",
+    },
+    customizations: {
+      title: "Andy Store",
+      description: "Best Store",
+      logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+    },
+  });
+}
+    </script>
+{% endblock %}

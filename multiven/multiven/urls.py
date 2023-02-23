@@ -27,5 +27,6 @@ urlpatterns = [
     path('', include('userprofile.urls')),
     path('', include('store.urls')),
     path('', frontpage, name='frontpage'),
+    path("djangoflutterwave/", include("djangoflutterwave.urls", namespace="djangoflutterwave"))
     #enables django to display image
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

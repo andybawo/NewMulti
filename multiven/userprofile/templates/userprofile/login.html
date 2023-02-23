@@ -3,13 +3,16 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <h1 class="text-2xl mb-6">Login</h1>
+<div class="product-con">
+    <h1 class="myaccounttext">Login</h1>
 
     <form method="POST" action=".">
         {% csrf_token %}
 
         <!-- this form as paragraph -->
         {{ form.as_p }}
-        <button class="py-4 px-8 bg-cyan-600 text-white">Login</button>
-    </form>
+        <button class="logout">Login</button>
+    </form><br><br>
+    <a href="{% url 'signup' %}"><button class="logout">Sign Up</button></a>
+</div>
 {% endblock %}

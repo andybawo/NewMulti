@@ -1,0 +1,18 @@
+{% extends 'front/base.html' %}
+
+{% block title %}Clear{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl mb-6">Clear</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+    <a href="{% url 'frontpage' %}" class="mt-6 inline-block py-4 px-8 bg-neutral-900 text-white rounded-md">OK</a>
+        
+    </form>
+    
+
+    <!-- clicking this will initially take us django default logout page (see settings line:30)-->
+{% endblock %}

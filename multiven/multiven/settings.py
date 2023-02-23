@@ -28,10 +28,19 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CART_SESSION_ID = 'cart'
+#this is how long i want the session to be live the value inputed is the seconds in a week, meaning after 1 week the cart will be emptied
+SESSION_COOKIE_AGE = 604800
+
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'frontpage'
 LOGOUT_REDIRECT_URL = 'login'
 
-
+FLW_PRODUCTION_PUBLIC_KEY = "your key"
+FLW_PRODUCTION_SECRET_KEY = "your key"
+FLW_SANDBOX_PUBLIC_KEY = "FLWPUBK_TEST-4fd674a5860754826095020b0d39f5fa-X"
+FLW_SANDBOX_SECRET_KEY = "FLWSECK_TEST-8234538561a6d29cc27f4739ca46e790-X"
+FLW_SANDBOX = True
 
 # Application definition
 
@@ -45,6 +54,7 @@ INSTALLED_APPS = [
     'front',
     'userprofile',
     'store',
+    'djangoflutterwave',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +138,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR/'static']
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
